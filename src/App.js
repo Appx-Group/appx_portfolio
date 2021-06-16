@@ -8,6 +8,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+
         <Header />
         <div className="container">
           <div className="wrapper">

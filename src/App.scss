@@ -90,6 +90,8 @@ header {
         color: #fff;
         font-size: 1.2rem;
         mix-blend-mode: difference;
+        display: flex;
+        align-items: center;
       }
     }
   }
@@ -103,7 +105,7 @@ header {
     height: 100%;
     width: 100%;
     .menu-secondary-background-color {
-      background: $black;
+      background: #fff;
       top: 0;
       left: 0;
       right: 0;
@@ -115,7 +117,7 @@ header {
     }
     .menu-layer {
       position: relative;
-      background: $red;
+      background: $black;
       height: 100%;
       overflow: hidden;
       .menu-city-background {
@@ -160,7 +162,7 @@ header {
                   color: #fff;
                   text-decoration: none;
                   &:hover {
-                    color: $black;
+                    color: $red;
                   }
                 }
               }

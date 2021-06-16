@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { withRouter, Link } from "react-router-dom";
-import Hamburger from "./Hamburger";
-import Icon from "./icon";
+import Menu from "./Menu";
+import Logo from "./logo";
+// import MenuIcon from "./menuIcon";
+
 
 const Header = ({ history }) => {
   // State of our Menu
@@ -10,6 +12,7 @@ const Header = ({ history }) => {
     clicked: null,
     menuName: "Menu"
   });
+
   // State of our button
   const [disabled, setDisabled] = useState(false);
 
@@ -59,7 +62,7 @@ const Header = ({ history }) => {
             <div className="logo">
               <Link to="/">
                 <div className="logo">
-                  <Icon />
+                  <Logo />
                 </div>
               </Link>
             </div>
@@ -71,7 +74,7 @@ const Header = ({ history }) => {
           </div>
         </div>
       </div>
-      <Hamburger state={state} />
+      <Menu state={state} />
     </header>
   );
 };
