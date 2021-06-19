@@ -1,4 +1,4 @@
-import gsap from "gsap";
+import { gsap, Power3 } from "gsap";
 
 // OPEN MENU
 export const staggerReveal = (node1, node2) => {
@@ -100,3 +100,12 @@ export const handleCityReturn = target => {
     skewY: 0
   });
 };
+
+// export const logoAnimation = logo => {
+//   gsap.from(logo, 0.8, {
+//     duration: 5,
+//     x: -20,
+//     opacity: 0,
+//     ease: "power3.inOut"
+//   })
+// }

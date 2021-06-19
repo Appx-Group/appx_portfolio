@@ -1,17 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { withRouter, Link } from "react-router-dom";
 import Menu from "./Menu";
 import Logo from "./logo";
 // import MenuIcon from "./menuIcon";
 
+// import { logoAnimation } from "./Animations";
+
+import { gsap } from "gsap";
 
 const Header = ({ history }) => {
+
+  let logo = useRef(null)
+
+  useEffect(() => {
+    // logoAnimation(logo)
+
+    history.listen(() => {
+      gsap.from(logo, 0.8, {
+        duration: 5,
+        x: -20,
+        opacity: 0,
+        ease: "power3.inOut"
+      })
+    }, [history])
+
+  })
   // State of our Menu
   const [state, setState] = useState({
     initial: false,
     clicked: null,
     menuName: "Menu"
   });
+
+
+
 
   // State of our button
   const [disabled, setDisabled] = useState(false);
@@ -22,7 +44,11 @@ const Header = ({ history }) => {
     history.listen(() => {
       setState({ clicked: false, menuName: "Menu" });
     });
+
   }, [history]);
+
+
+
 
   // Toggle menu
   const handleMenu = () => {
@@ -59,7 +85,10 @@ const Header = ({ history }) => {
       <div className="container">
         <div className="wrapper">
           <div className="inner-header">
-            <div className="logo">
+            <div
+              className="logo"
+              ref={el => (logo = el)}
+            >
               <Link to="/">
                 <div className="logo">
                   <Logo />
