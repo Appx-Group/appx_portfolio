@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { Link } from "react-router-dom";
-
 import {
   staggerText,
   staggerReveal,
@@ -11,13 +10,12 @@ import {
   handleCityReturn,
   handleCity,
   staggerRevealClose
-} from "./Animations";
-
-import dallas from "../images/dallas.webp";
-import austin from "../images/austin.webp";
-import newyork from "../images/newyork.webp";
-import sanfrancisco from "../images/sanfrancisco.webp";
-import beijing from "../images/beijing.webp";
+} from "../Animations";
+import dallas from "./images/dallas.webp";
+import austin from "./images/austin.webp";
+import newyork from "./images/newyork.webp";
+import sanfrancisco from "./images/sanfrancisco.webp";
+import beijing from "./images/beijing.webp";
 
 const cities = [
   { name: "Dallas", image: dallas },
@@ -84,7 +82,7 @@ const Menu = ({ state }) => {
                       onMouseOut={e => handleHoverExit(e)}
                       ref={el => (line1 = el)}
                       to='/opportunities'>
-                      Opportunities
+                      About us
                     </Link>
                   </li>
                   <li>
@@ -93,7 +91,7 @@ const Menu = ({ state }) => {
                       onMouseOut={e => handleHoverExit(e)}
                       ref={el => (line2 = el)}
                       to='/solutions'>
-                      Solutions
+                      Projects
                     </Link>
                   </li>
                   <li>
@@ -117,7 +115,7 @@ const Menu = ({ state }) => {
                 </p>
               </div>
               <div className='locations'>
-                Locations:
+                Start Up:
                 {/* Returning the list of cities */}
                 {cities.map(el => (
                   <span

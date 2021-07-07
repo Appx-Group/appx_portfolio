@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap, Power3, Expo, TimelineMax } from "gsap";
 
 import ringImg from "../images/ring.png"
@@ -8,31 +8,6 @@ export default function Loading(props) {
     let loadingPage = useRef(null);
     let ringOne = useRef(null);
     let ringTwo = useRef(null);
-
-    // const { num } = props.num;
-
-    // const [count, setCount] = useState("0")
-
-    // useEffect(() => {
-    //     let start = 0;
-
-    //     let end = 100;
-
-    //     if (start === end) {
-    //         return;
-    //     }
-
-    //     let incrementTime = (2 / end) * 1000;
-
-    //     let timer = setInterval(() => {
-    //         start += 1;
-    //         setCount(String(start))
-    //         if (start === end) clearInterval(timer);
-    //     }, incrementTime);
-
-
-
-    // }, [num])
 
     useEffect(() => {
         gsap.to(
@@ -45,6 +20,14 @@ export default function Loading(props) {
                 ease: Power3.easeInOut
             }
         )
+        gsap.to(ringOne, 1, {
+            delay: 7,
+            zIndex: 3
+        })
+        gsap.to(ringTwo, 1, {
+            delay: 7,
+            zIndex: 3
+        })
 
         var timeline1 = new TimelineMax();
 
@@ -72,6 +55,10 @@ export default function Loading(props) {
                 x: 400,
                 ease: Expo.easeInOut
             }, '-=5')
+
+
+
+
     })
 
     // const loadingBarStyle = {
@@ -88,11 +75,11 @@ export default function Loading(props) {
                 <h1>'{count}%</h1>
             </div> */}
             </div>
-            <div class="loader">
-                <div class="ringOne ring" ref={el => { ringOne = el }}>
+            <div className="loader">
+                <div className="ringOne ring" ref={el => { ringOne = el }}>
                     <img src={ringImg} alt="Ring" />
                 </div>
-                <div class="ringTwo ring" ref={el => { ringTwo = el }}>
+                <div className="ringTwo ring" ref={el => { ringTwo = el }}>
                     <img src={ringImg} alt="Ring" />
                 </div>
             </div>

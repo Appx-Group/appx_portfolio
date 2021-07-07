@@ -1,4 +1,4 @@
-import { gsap, Power3 } from "gsap";
+import { gsap } from "gsap";
 
 // OPEN MENU
 export const staggerReveal = (node1, node2) => {

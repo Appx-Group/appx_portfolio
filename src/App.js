@@ -1,26 +1,66 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import "./App.scss";
-
-
-import Header from "./components/Header";
+import Navbar from "./components/navbar/navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Loading from "./components/loading";
-import Home from "./components/Home";
+// import Loading from "./components/loading";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Projects from "./pages/Projects";
+import useWindowSize from './components/useWindowSize'
 
 function App() {
+
+  const size = useWindowSize();
+  const app = useRef();
+  const scrollContainer = useRef();
+  const data = {
+    ease: 0.1,
+    current: 0,
+    previous: 0,
+    rounded: 0
+  };
+
+  useEffect(() => {
+    requestAnimationFrame(() => skewScrolling());
+  });
+
+  useEffect(() => {
+    setBodyHeight();
+  }, [size.height]);
+
+  const setBodyHeight = () => {
+    document.body.style.height = `${scrollContainer.current.getBoundingClientRect().height
+      }px`;
+  };
+
+  // Scrolling
+  const skewScrolling = () => {
+    data.current = window.scrollY;
+    data.previous += (data.current - data.previous) * data.ease;
+    data.rounded = Math.round(data.previous * 200) / 200;
+
+    const difference = data.current - data.rounded;
+    const acceleration = difference / size.width;
+    const velocity = +acceleration;
+    const skew = velocity * 7.5;
+
+    scrollContainer.current.style.transform = `translate3d(0, -${data.rounded}px, 0) skewY(${skew}deg)`;
+
+    requestAnimationFrame(() => skewScrolling());
+  };
+
   return (
     <Router>
-      <div className="App">
-        <Loading num={100} bar={90} />
-        <Header />
-        <div className="container">
+      <div className="App" ref={app}>
+        <div ref={scrollContainer} className="container">
+          {/* <Loading num={100} bar={90} /> */}
+          <Navbar />
           <div className="wrapper">
             <div className="home">
               <Switch>
-                <Route path="/" component={Home} />
-                <Route exact path="/opportunities" component={Opportunities} />
-                <Route exact path="/solutions" component={Solutions} />
-                <Route exact path="/contact-us" component={Contact} />
+                <Route exact path="/" component={Home} />
+                <Route exact path="/about" component={About} />
+                <Route exact path="/projects" component={Projects} />
               </Switch>
             </div>
           </div>
@@ -30,30 +70,6 @@ function App() {
   );
 }
 
-function Opportunities() {
-  return <p>Discover our numerous opportunities</p>;
-}
 
-function Solutions() {
-  return <p>Solutions that help you.</p>;
-}
 
-function Contact() {
-  return <p>Feel free to reach us.</p>;
-}
-
-// function Home() {
-//   return (
-//     <div className="container">
-//       <div className="wrapper">
-//         <h5 className="header_title">
-//           You will fly <br />
-//           away with US!
-//         </h5>
-//         <div className="header_img">
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
 export default App;
